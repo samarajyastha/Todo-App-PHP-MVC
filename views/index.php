@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <?php
-            if (!empty($_GET['message'])) {
+            if (!empty($_GET['message'] == 'taskAdded')) :
             ?>
                 <div class="alert alert-success alert-dismissible fade show " role="alert">
                     Task added successfully.
@@ -26,7 +26,15 @@
                 </div>
 
             <?php
-            } ?>
+            elseif (!empty($_GET['message'] == 'taskDeleted')) :
+            ?>
+                <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                    Task deleted successfully.
+                    <button type="button" class="close btn " data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -40,9 +48,14 @@
                                     <small><i class="far fa-calendar"></i> <?php echo date('M j, Y h:i A', strtotime($task->created_at)); ?></small>
                                 </div>
                                 <p class="mb-1"><?php echo $task->description; ?></p>
-                                <span class="badge <?php echo $task->status ? 'bg-success' : 'bg-dark'; ?>"><?php echo $task->status ? 'Completed' : 'Pending'; ?></span>
-                                <a href="#"><i class="fa fa-pencil p-1"></i></a>
-                                <a href="#"><i class="fa fa-trash text-danger p-1"></i></a>
+                                <div class="task-btn">
+                                    <form action="<?php echo URLROOT; ?>/editTask/<?php echo $task->id; ?>" method="post" class="pull-right">
+                                        <input type="submit" value="Edit" class="btn btn-primary btn-sm">
+                                    </form>
+                                    <form action="<?php echo URLROOT; ?>/deleteTask/<?php echo $task->id; ?>" method="post" class="pull-right">
+                                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                                    </form>
+                                </div>
                             </div>
                         <?php endforeach; ?>
 

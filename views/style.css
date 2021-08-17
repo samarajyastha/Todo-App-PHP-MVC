@@ -22,13 +22,19 @@
   font-size: 10px;
   color: #4c4d4f;
 }
-.alert{
-    width: 98%;
-    height: max-content;
-    padding: 10px;
-    margin:0 auto;
+.alert {
+  width: 98%;
+  height: max-content;
+  padding: 10px;
+  margin: 0 auto;
 }
-.alert .close{
-    float: right;
-    padding: 0;
+.alert .close {
+  float: right;
+  padding: 0;
+}
+.task-btn form{
+    display: inline-block;
+}
+.task-btn input {
+  font-size: 9px;
 }

@@ -51,5 +51,10 @@ class Task
     // Delete a task
     public function deleteTask($id)
     {
+        $this->db->query('DELETE FROM tasks WHERE id = :id');
+        // Bind values
+        $this->db->bind(':id', $id);
+        // Execute
+        $this->db->execute();
     }
 }

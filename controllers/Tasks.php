@@ -22,13 +22,23 @@ class Tasks extends Controller
                 'status' => '0',
             ];
             $this->taskModel->addTask($data);
-            $this->view('addTask', $data);
+            $location = URLROOT;
+            header("Location: $location?message=taskAdded");
         } else {
             $data = [
                 'title' => '',
                 'description' => ''
             ];
-            $this->view('addTask', $data);
+            $location = URLROOT;
+            header("Location: $location?message=taskAdded");
+        }
+    }
+    public function deleteTask($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->taskModel->deleteTask($id);
+            $location = URLROOT;
+            header("Location: $location?message=taskDeleted");
         }
     }
 }
