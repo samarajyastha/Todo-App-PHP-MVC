@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.card {
+  margin: 70px 0;
+  padding: 35px 45px;
+}
+.form-group {
+  margin: 20px 0;
+}
+.task-group .task-group-item{
+    margin: 20px 0;
+    border: 1px solid #e5e5e5;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
