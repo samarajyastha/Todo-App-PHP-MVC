@@ -6,7 +6,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'todo');
 
 
-// App root
+ // App root
 define('APPROOT', dirname(dirname(__FILE__)));
 
 // Url root
