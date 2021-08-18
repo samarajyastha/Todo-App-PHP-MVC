@@ -28,11 +28,13 @@ class Database
             echo $this->err;
         }
     }
+    
     // Prepare statement with query
     public function query($sql)
     {
         $this->stmt = $this->db->prepare($sql);
     }
+
     //Bind values
     public function bind($param, $value, $type = null)
     {
@@ -68,9 +70,4 @@ class Database
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    // Get the row count
-    public function rowCount()
-    {
-        return $this->stmt->rowCount();
-    }
 }

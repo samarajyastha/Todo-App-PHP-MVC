@@ -12,24 +12,14 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
-            <?php
-            if (!empty($_GET['message'] == 'taskAdded')) :
-            ?>
-                <div class="alert alert-success alert-dismissible fade show " role="alert">
-                    Task added successfully.
-                    <button type="button" class="close btn " data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
 
             <?php
-            elseif (!empty($_GET['message'] == 'taskDeleted')) :
+            if (isset($_GET['message'])) :
             ?>
-                <div class="alert alert-danger alert-dismissible fade show " role="alert">
-                    Task deleted successfully.
+                <div class="alert alert-success alert-dismissible fade show " role="alert">
+                    <?php echo $_GET['message']; ?>
                     <button type="button" class="close btn " data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -49,9 +39,6 @@
                                 </div>
                                 <p class="mb-1"><?php echo $task->description; ?></p>
                                 <div class="task-btn">
-                                    <form action="<?php echo URLROOT; ?>/editTask/<?php echo $task->id; ?>" method="post" class="pull-right">
-                                        <input type="submit" value="Edit" class="btn btn-primary btn-sm">
-                                    </form>
                                     <form action="<?php echo URLROOT; ?>/deleteTask/<?php echo $task->id; ?>" method="post" class="pull-right">
                                         <input type="submit" value="Delete" class="btn btn-danger btn-sm">
                                     </form>
@@ -77,7 +64,8 @@
                             <label for="description">
                                 Description:<sup>*</sup>
                             </label>
-                            <textarea name="description" id="description" rows="5" required class="form-control"></textarea>
+                            <textarea name="description" id="description" rows="5" required class="form-control">
+                            </textarea>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Add Task" class="btn btn-success ">
@@ -92,9 +80,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     <script>
         $(document).ready(() => {
+            setTimeout(() => {
+                $('.alert').alert('close');
+
+            }, 1500);
             $('.close').on('click', () => {
                 $('.alert').alert('close');
             })
+
         })
     </script>
 </body>

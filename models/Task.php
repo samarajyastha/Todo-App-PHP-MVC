@@ -29,23 +29,17 @@ class Task
         $this->db->execute();
     }
 
-
-    //Execute the prepared statement
-    public function execute()
-    {
-        return $this->stmt->execute();
-    }
-
-    // Get result set as array of objects
-    public function resultSet()
-    {
-        $this->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
     // Update a task
     public function updateTask($data)
     {
+        $this->db->query('UPDATE tasks SET title = :title, description = :description WHERE id = :id');
+        // Bind values
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':description', $data['description']);
+
+        // Execute
+        $this->db->execute();
     }
 
     // Delete a task

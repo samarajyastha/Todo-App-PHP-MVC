@@ -5,6 +5,7 @@ class Tasks extends Controller
     {
         $this->taskModel = $this->model('Task');
     }
+
     public function index()
     {
         $tasks = $this->taskModel->getTask();
@@ -13,6 +14,7 @@ class Tasks extends Controller
         ];
         $this->view('index', $data);
     }
+
     public function addTask()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -23,22 +25,16 @@ class Tasks extends Controller
             ];
             $this->taskModel->addTask($data);
             $location = URLROOT;
-            header("Location: $location?message=taskAdded");
-        } else {
-            $data = [
-                'title' => '',
-                'description' => ''
-            ];
-            $location = URLROOT;
-            header("Location: $location?message=taskAdded");
+            header("Location: $location?message=Task Added Successfully");
         }
     }
+
     public function deleteTask($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->taskModel->deleteTask($id);
             $location = URLROOT;
-            header("Location: $location?message=taskDeleted");
+            header("Location: $location?message=Task Deleted Successfully");
         }
     }
 }

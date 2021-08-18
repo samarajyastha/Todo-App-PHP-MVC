@@ -14,13 +14,13 @@ class Core
 
     public function __construct()
     {
-        // print_r($this->getUrl());
         $url = $this->getUrl();
 
         require_once 'controllers/Tasks.php';
 
         //Instantiate controller class
         $this->currentController = new $this->currentController;
+
         // Check for second part of url
         if (isset($url[0])) {
             //check to see if method exists in controller
@@ -31,7 +31,6 @@ class Core
                 unset($url[0]);
             }
         }
-        //echo $this->currentMethod;
 
         // get params
         $this->params = $url ? array_values($url) : [];
